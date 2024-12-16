@@ -1,0 +1,18 @@
+.navbar{
+    background-color: var(--theme);
+    padding: 1rem 1.5rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo{
+    color: var(--white);
+    font-weight: 500px;
+    font-size: 1rem;
+    margin: 0;
+}
