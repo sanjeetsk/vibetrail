@@ -1,0 +1,47 @@
+.feed {
+    max-width: 600px;
+    margin: auto;
+    padding: 1rem;
+}
+
+h2 {
+    text-align: center;
+}
+
+.post-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.user-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-media img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.post-media video {
+    width: 100%;
+    border-radius: 10px;
+}
+
+p {
+    margin: 0.5rem 0;
+    font-size: 14px;
+}

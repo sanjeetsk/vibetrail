@@ -1,4 +1,4 @@
-.signup-wrapper{
+.signup-wrapper {
     width: 70%;
     max-width: 400px;
     height: auto;
@@ -7,13 +7,27 @@
     padding: 1rem;
 }
 
-.title{
+.title-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    width: 4rem;
+    /* Adjust size as needed */
+    height: 4rem;
+    object-fit:fill;
+    /* Ensures the icon maintains aspect ratio */
+}
+
+.title {
     font-weight: 500;
     font-size: 1.2rem;
     text-align: center;
 }
 
-.p-login{
+.p-login {
     text-align: center;
     font-weight: 300;
     font-size: 0.8;

@@ -25,3 +25,40 @@ input {
   align-items: center;
   height: 90vh;
 }
+
+/* Dashboard Container */
+.dashboard-container {
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Feed Container */
+.feed-container {
+  background-color: #fff;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Floating Button */
+.floating-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  color: #000;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.floating-button svg {
+  color: #000; /* Black color as shown in the image */
+  transition: transform 0.2s ease-in-out;
+}
+
+.floating-button svg:hover {
+  transform: scale(1.1);
+}

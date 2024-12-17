@@ -5,7 +5,6 @@ import Header from '../components/Header'
 function SignUp() {
   return (
     <div>
-      <Header />
       <div className='wrapper'>
         <SignUpLogin />
       </div>
