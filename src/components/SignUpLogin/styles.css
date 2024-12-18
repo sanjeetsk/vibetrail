@@ -14,9 +14,9 @@
 }
 
 .icon {
-    width: 4rem;
+    width: 5rem;
     /* Adjust size as needed */
-    height: 4rem;
+    height: 5rem;
     object-fit:fill;
     /* Ensures the icon maintains aspect ratio */
 }

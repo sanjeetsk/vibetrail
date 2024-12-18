@@ -1,0 +1,46 @@
+.profile-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.profile-header {
+    text-align: center;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.edit-button {
+    margin: 10px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.bio {
+    font-style: italic;
+    margin: 10px 0;
+}
+
+.posts-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.post-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.post-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
