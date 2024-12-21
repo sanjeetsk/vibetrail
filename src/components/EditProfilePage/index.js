@@ -1,78 +1,107 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { doc, updateDoc, getDoc } from "firebase/firestore";
+import { db, auth } from "../../firebase";
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from "react-router-dom";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "../../firebase";
-import "./styles.css";
+import './styles.css';
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { MdEdit } from "react-icons/md";
 
-function EditProfile() {
+function EditProfilePage() {
+  const [authUser, loading, error] = useAuthState(auth); // Get the authenticated user
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
-  const [photoURL, setPhotoURL] = useState("");
+  const [photoURL, setPhotoURL] = useState(""); // Optional: to update profile picture
   const navigate = useNavigate();
 
-  // Fetch current user data
-  const fetchUserData = async () => {
-    const userRef = doc(db, "users", "sakshi_uid"); // Replace with dynamic user ID
-    const userSnap = await getDoc(userRef);
-    if (userSnap.exists()) {
-      const data = userSnap.data();
-      setName(data.name);
-      setBio(data.bio);
-      setPhotoURL(data.photoURL);
+  useEffect(() => {
+    if (authUser) {  // Check if authUser is not null
+      const fetchUserData = async () => {
+        const userRef = doc(db, "users", authUser.uid);
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+          const data = userSnap.data();
+          setName(data.name);
+          setBio(data.bio);
+          setPhotoURL(data.photoURL);
+        }
+      };
+      fetchUserData();
+    } else if (error) {
+      console.error("Authentication error:", error);
+      // Handle the authentication error, e.g., redirect to login
+      navigate('/login'); // Example: Redirect to login page
+    }
+  }, [authUser, error, db, navigate]); // Add dependencies to useEffect
+
+
+  const handleSave = async () => {
+    if (!authUser) return;
+    try {
+      const userRef = doc(db, "users", authUser.uid);
+      await updateDoc(userRef, {
+        name,
+        bio,
+        photoURL, // Optional: update if you allow profile picture changes
+      });
+      navigate("/profilePage"); // Navigate back to profile page after saving
+    } catch (error) {
+      console.error("Error updating profile:", error);
     }
   };
 
-  useEffect(() => {
-    fetchUserData();
-  }, []);
-
-  // Save updated data
-  const handleSave = async () => {
-    const userRef = doc(db, "users", "sakshi_uid");
-    await updateDoc(userRef, {
-      name,
-      bio,
-      photoURL,
-    });
-    navigate("/profile");
-  };
+  if (loading) {
+    return <div>Loading...</div>; // Display a loading indicator
+  }
 
   return (
     <div className="edit-profile-container">
-      <h2>Edit Profile</h2>
-      <div className="edit-profile-header">
-        <img src={photoURL} alt="Profile" className="edit-profile-image" />
-        <input
-          type="text"
-          value={photoURL}
-          placeholder="Profile Image URL"
-          onChange={(e) => setPhotoURL(e.target.value)}
-        />
+      <div className="cover-photo-section">
+        <div className="header">
+          <div className="back-button" onClick={() => navigate("/profilePage")}>
+            <IoMdArrowRoundBack />
+          </div>
+          <h3>Edit Profile</h3>
+        </div>
+        <div className="profile-section">
+          <div className="profile-picture">
+            <img
+              src={photoURL || "/default-profile.png"}
+              alt="Profile"
+              className="profile-image"
+            />
+            <div className="edit-photo-button" onClick={() => console.log("Edit photo clicked")}>
+              <MdEdit />
+            </div>
+          </div>
+        </div>
+        <MdEdit className="edit-icon"/>
       </div>
 
-      {/* Name Input */}
-      <label>Name</label>
-      <input
-        type="text"
-        value={name}
-        placeholder="Enter your name"
-        onChange={(e) => setName(e.target.value)}
-      />
-
-      {/* Bio Input */}
-      <label>Bio</label>
-      <textarea
-        rows="3"
-        value={bio}
-        placeholder="Write your bio..."
-        onChange={(e) => setBio(e.target.value)}
-      ></textarea>
-
-      <button className="save-button" onClick={handleSave}>
-        SAVE
-      </button>
+      <div className="form">
+        <label>
+          Name
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Your Name"
+          />
+        </label>
+        <label>
+          Bio
+          <textarea
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+            placeholder="Tell us something about yourself"
+          />
+        </label>
+        <button className="save-button" onClick={handleSave}>
+          SAVE
+        </button>
+      </div>
     </div>
   );
 }
 
-export default EditProfile;
+export default EditProfilePage;

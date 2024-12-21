@@ -1,12 +1,21 @@
-import React, { useState } from 'react'
-import './styles.css'
+import React, { useState } from 'react';
+import './styles.css';
 import { toast } from 'react-toastify';
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth, db, provider } from '../../firebase';
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
-import icon from '../../assets/icon.png'
+import icon from '../../assets/icon.png';
+import img1 from '../../assets/img1.jpg';
+import img2 from '../../assets/img2.jpg';
+import img3 from '../../assets/img3.jpg';
+import img4 from '../../assets/img4.jpg';
+import img5 from '../../assets/img5.jpg';
+import img6 from '../../assets/img6.jpg';
+import img7 from '../../assets/img7.jpg';
+import img8 from '../../assets/img8.jpg';
+import img9 from '../../assets/img9.jpg';
 
 
 function SignUpLogin() {
@@ -81,21 +90,34 @@ function SignUpLogin() {
   }
 
   return (
-    <div className='signup-wrapper'>
-      <div className="title-div">
-        <img src={icon} alt="icon" className="icon" />
-        <h2 className="title">
-          <span style={{ color: "var(--theme)" }}>vibeTrail.</span>
-        </h2>
+    <div className="login-page">
+      <div className="image-grid">
+        <img src={img1} alt="image1" />
+        <img src={img2} alt="image2" />
+        <img src={img3} alt="image3" />
+        <img src={img4} alt="image4" />
+        <img src={img5} alt="image5" />
+        <img src={img6} alt="image6" />
+        <img src={img7} alt="image7" />
+        <img src={img8} alt="image8" />
+        <img src={img9} alt="image9" />
       </div>
-
-
-      <form>
-        <div className='btn' onClick={handleGoogleLogin}>
-          <FcGoogle style={{ margin: '5px', fontSize: '1.5rem' }} />
-          Continue with Google
+      <div className='signup-wrapper'>
+        <div className="title-div">
+          <img src={icon} alt="icon" className="icon" />
+          <h2 className="title">
+            <span style={{ color: "var(--theme)" }}>vibeTrail.</span>
+          </h2>
         </div>
-      </form>
+
+
+        <form>
+          <div className='btn' onClick={handleGoogleLogin}>
+            <FcGoogle style={{ margin: '5px', fontSize: '1.5rem' }} />
+            Continue with Google
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

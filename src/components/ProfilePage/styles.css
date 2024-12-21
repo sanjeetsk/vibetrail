@@ -1,6 +1,34 @@
 .profile-container {
-    padding: 20px;
-    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: auto;
+    padding: 1rem;
+
+}
+
+
+.cover-photo-section {
+    position: relative;
+    margin-bottom: 20px;
+    background-color: lightgrey;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    font-size: 22px;
+    color: black;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.header h3 {
+    margin-left: 20px;
 }
 
 .profile-header {
@@ -14,6 +42,7 @@
 }
 
 .edit-button {
+    width: 95%;
     margin: 10px;
     padding: 8px 12px;
     background-color: #007bff;
@@ -37,10 +66,59 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
+    position: relative;
 }
+
 
 .post-image {
     width: 100%;
-    height: 120px;
+    height: 180px;
     object-fit: cover;
+    border-radius: 12px;
+}
+
+.post-details {
+    padding: 5px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-caption {
+    position: absolute;
+    top: 134px;
+    left: 34px;
+    font-size: 15px;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.post-text{
+    font-size: 14px;
+    margin: 0;
+}
+
+.post-likes {
+    font-size: 12px;
+    color: gray;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.post-likes i {
+    font-size: 14px;
+}
+
+.post-overlay {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 12px;
+    padding: 2px 5px;
+    border-radius: 10px;
 }

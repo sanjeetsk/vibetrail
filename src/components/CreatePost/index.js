@@ -4,6 +4,8 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { toast } from "react-toastify";
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
 function CreatePost() {
@@ -12,6 +14,8 @@ function CreatePost() {
     const [uploading, setUploading] = useState(false);
     const [user] = useAuthState(auth);
     const [progress, setProgress] = useState(0);
+
+    const navigate = useNavigate();
 
     // Handle file selection
     const handleFileChange = (e) => {
@@ -32,7 +36,7 @@ function CreatePost() {
                     (snapshot) => {
                         // Track upload progress
                         const progress = Math.round(
-                          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                         );
                         setProgress(progress);
                     },
@@ -85,7 +89,12 @@ function CreatePost() {
 
     return (
         <div className="create-post">
-            <h3>Create Post</h3>
+            <div className="header">
+                <div className="back-button" onClick={() => navigate("/profilePage")}>
+                    <IoMdArrowRoundBack />
+                </div>
+                <h3>New Post</h3>
+            </div>
             <form onSubmit={handleSubmit}>
                 <textarea
                     placeholder="What's on your mind?"

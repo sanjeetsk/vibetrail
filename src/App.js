@@ -5,6 +5,8 @@ import Dashboard from "./pages/Dashboard";
 import 'react-toastify/dist/ReactToastify.css';
 import CreatePost from "./components/CreatePost";
 import ProfilePage from "./components/ProfilePage";
+import EditProfile from "./components/EditProfilePage";
+import Logout from "./components/Logout";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/createPost" element={<CreatePost />} />
           <Route path="/profilePage" element={<ProfilePage />} />
+          <Route path="/editProfile" element={<EditProfile />} />
+          <Route path="/logout" element={<Logout />} />
         </Routes>
     </div>
   );
