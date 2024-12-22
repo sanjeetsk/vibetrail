@@ -7,7 +7,7 @@ import './styles.css';
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
 
     useEffect(() => {

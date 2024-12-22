@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../../firebase"; // Import Firebase setup
-import { collection, query, orderBy, limit, getDocs, getDoc, startAfter, doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { collection, query, orderBy, limit, getDocs, getDoc, startAfter, doc, updateDoc} from "firebase/firestore";
 import "./styles.css"; // Import custom styling
 import { auth } from "../../firebase";
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -27,7 +27,7 @@ function Feed() {
   // Fetch initial batch of posts
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [fetchPosts]);
 
   const fetchPosts = async () => {
     if (loading || !hasMore) return;

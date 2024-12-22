@@ -10,7 +10,7 @@ function Logout() {
   useEffect(() => {
     // Automatically call handleLogout when the component mounts
     handleLogout();
-  }, []);
+  }, [handleLogout]);
 
   async function handleLogout() {
     try {

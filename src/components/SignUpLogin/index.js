@@ -88,6 +88,8 @@ function SignUpLogin() {
     }
   }
 
+  if(loading) return <p>Loading...</p>
+
   return (
     <div className="login-page">
       <div className="image-grid">
