@@ -2,10 +2,7 @@ import React, { useEffect } from 'react'
 import './styles.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
-import { signOut } from 'firebase/auth';
-import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import userpic from '../../assets/user.jpg'
 import Navbar from '../Navbar';
 
 function Header() {
@@ -15,6 +12,8 @@ function Header() {
   useEffect(() => {
     if (!loading && user) {
       navigate('/dashboard');
+    }else{
+      navigate('/');
     }
   }, [user, loading, navigate]);
 

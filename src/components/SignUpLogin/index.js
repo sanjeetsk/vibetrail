@@ -39,7 +39,6 @@ function SignUpLogin() {
           photoURL: user.photoURL,
           createdAt: new Date(),
         });
-        console.log("name", user.displayName)
         toast.success("Doc created!");
         setLoading(false);
       }

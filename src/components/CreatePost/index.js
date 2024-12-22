@@ -10,7 +10,8 @@ import "./styles.css";
 
 function CreatePost() {
     const [text, setText] = useState("");
-    const [files, setFiles] = useState([]); // Holds selected files
+    const [images, setImages] = useState([]);
+    const [videos, setVideos] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [user] = useAuthState(auth);
     const [progress, setProgress] = useState(0);
@@ -20,14 +21,17 @@ function CreatePost() {
     // Handle file selection
     const handleFileChange = (e) => {
         const selectedFiles = Array.from(e.target.files);
-        setFiles(selectedFiles);
+        const imageFiles = selectedFiles.filter(file => file.type.startsWith('image/'));
+        const videoFiles = selectedFiles.filter(file => file.type.startsWith('video/'));
+        setImages((prev) => [...prev, ...imageFiles]);
+        setVideos((prev) => [...prev, ...videoFiles]);
     };
 
     // Upload files to Firebase Storage and get URLs
-    const uploadFiles = async () => {
+    const uploadFiles = async (files, folder) => {
 
         const uploadPromises = files.map((file) => {
-            const storageRef = ref(storage, `posts/${user.uid}/${Date.now()}_${file.name}`);
+            const storageRef = ref(storage, `posts/${user.uid}/${folder}/${Date.now()}_${file.name}`);
             const uploadTask = uploadBytesResumable(storageRef, file);
 
             return new Promise((resolve, reject) => {
@@ -55,7 +59,7 @@ function CreatePost() {
     // Handle post submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!text && files.length === 0) {
+        if (!text && images.length === 0 && videos.length === 0) {
             toast.error("Please add some text or media.");
             return;
         }
@@ -63,7 +67,8 @@ function CreatePost() {
         setUploading(true);
         try {
             // Upload files and get their URLs
-            const mediaURLs = files.length > 0 ? await uploadFiles() : [];
+            const imageURLs = images.length > 0 ? await uploadFiles(images, 'images') : [];
+            const videoURLs = videos.length > 0 ? await uploadFiles(videos, 'videos') : [];
 
             // Add post data to Firestore
             const postRef = collection(db, "posts");
@@ -72,16 +77,18 @@ function CreatePost() {
                 userPhoto: user.photoURL,
                 text: text,
                 userId: user.uid,
-                images: mediaURLs,
+                images: imageURLs,
+                videos: videoURLs,
                 createdAt: serverTimestamp(),
             });
 
             toast.success("Post created successfully!");
             setText("");
-            setFiles([]);
+            setImages([]);
+            setVideos([]);
+            navigate("/dashboard");
         } catch (error) {
-            console.error("Error creating post: ", error);
-            toast.error("Failed to create post.");
+            toast.error("Error creating post: ", error);
         } finally {
             setUploading(false);
         }
@@ -90,7 +97,7 @@ function CreatePost() {
     return (
         <div className="create-post">
             <div className="header">
-                <div className="back-button" onClick={() => navigate("/profilePage")}>
+                <div className="back-button" onClick={() => navigate("/dashboard")}>
                     <IoMdArrowRoundBack />
                 </div>
                 <h3>New Post</h3>
@@ -104,8 +111,11 @@ function CreatePost() {
                 />
                 <input type="file" multiple accept="image/*,video/*" onChange={handleFileChange} />
                 <div className="file-preview">
-                    {files.map((file, index) => (
-                        <p key={index}>{file.name}</p>
+                    {images.map((file, index) => (
+                        <p key={index}>{file.name} (Image)</p>
+                    ))}
+                    {videos.map((file, index) => (
+                        <p key={index}>{file.name} (Video)</p>
                     ))}
                 </div>
                 <button type="submit" disabled={uploading}>

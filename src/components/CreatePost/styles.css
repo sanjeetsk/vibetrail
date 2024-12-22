@@ -47,7 +47,7 @@ input[type="file"] {
     margin: 0.5rem 0;
 }
 
-button {
+form button {
     width: 100%;
     padding: 0.5rem;
     background-color: var(--theme, #6200ea);
@@ -58,7 +58,7 @@ button {
     font-size: 1rem;
 }
 
-button:disabled {
+form button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }

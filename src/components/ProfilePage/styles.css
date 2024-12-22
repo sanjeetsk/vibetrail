@@ -1,3 +1,5 @@
+/* Removed invalid import statement */
+
 .profile-container {
     max-width: 600px;
     margin: auto;
@@ -9,7 +11,16 @@
 .cover-photo-section {
     position: relative;
     margin-bottom: 20px;
-    background-color: lightgrey;
+    background-color: src('../assets/coverphoto.png');
+}
+
+.cover-img{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .header {
@@ -85,9 +96,7 @@
 }
 
 .post-caption {
-    position: absolute;
-    top: 134px;
-    left: 34px;
+    padding: 0px 10px;
     font-size: 15px;
     font-weight: 500;
     overflow: hidden;
