@@ -27,7 +27,7 @@ function Feed() {
   // Fetch initial batch of posts
   useEffect(() => {
     fetchPosts();
-  }, [fetchPosts]);
+  }, []);
 
   const fetchPosts = async () => {
     if (loading || !hasMore) return;
