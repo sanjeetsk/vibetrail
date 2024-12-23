@@ -37,6 +37,13 @@
     align-items: center;
 }
 
+.title-des{
+    text-align: center;
+    font-size: 0.8rem;
+    position: relative;
+    top: -23px;
+}
+
 .icon {
     width: 5rem;
     height: 5rem;

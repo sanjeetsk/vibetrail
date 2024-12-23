@@ -110,6 +110,7 @@ function SignUpLogin() {
             <span style={{ color: "var(--theme)" }}>vibeTrail.</span>
           </h2>
         </div>
+        <p className='title-des'>Moments That Matter, Shared Forever.</p>
 
 
         <form>

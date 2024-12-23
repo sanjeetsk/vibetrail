@@ -48,7 +48,7 @@ h2 {
 
 .post-media img, .post-media video {
     width: 100%;
-    max-height: 500px;
+    max-height: 580px;
     border-radius: 10px;
     margin-bottom: 10px;
     object-fit: cover;
@@ -100,4 +100,51 @@ button.share {
 
 button.share:hover {
     background-color: #b8d8ff;
+}
+
+@media screen and (max-width: 600px) {
+    .feed {
+        padding: 0;
+    }
+    
+    .post-card {
+        padding: 0.5rem;
+    }
+
+    .post-card p{
+        font-size: 0.8rem;
+    }
+    
+    .user-photo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .post-header h4 {
+        font-size: 0.9rem;
+    }
+    
+    .post-header p {
+        font-size: 0.6rem;
+    }
+    
+    .post-media img, .post-media video {
+        max-height: 400px;
+        max-height: 600px;
+        margin-bottom: 5px;
+    }
+    
+    .post-actions button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    button.like {
+        font-size: 12px;
+    }
+    
+    button.share {
+        font-size: 12px;
+    }
+    
 }

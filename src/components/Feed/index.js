@@ -115,7 +115,7 @@ function Feed() {
   };
 
   const openShareModal = (postId) => {
-    setCurrentShareLink(`https://vibetrail.netlify.app/post/${postId}`); // Replace with your actual post link
+    setCurrentShareLink(`https://vibetrail.netlify.app/`);
     setIsShareModalOpen(true);
   };
 
